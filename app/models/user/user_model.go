@@ -11,10 +11,13 @@ import (
 type User struct {
 	models.BaseModel
 
-	Name     string `json:"name,omitempty"`
-	Email    string `json:"-"`
-	Phone    string `json:"-"`
-	Password string `json:"-"`
+	Name         string `json:"name,omitempty"`
+	City         string `json:"city,omitempty"`
+	Introduction string `json:"introduction,omitempty"`
+	Avatar       string `json:"avatar,omitempty"`
+	Email        string `json:"-"`
+	Phone        string `json:"-"`
+	Password     string `json:"-"`
 	// 注意，因为我们不希望将敏感信息输出给用户
 	// 所以这里 Email 、Phone 、Password 后面设置了 json:"-" ，这是在指示 JSON 解析器忽略字段 。后面接口返回用户数据时候，这三个字段都会被隐藏。
 

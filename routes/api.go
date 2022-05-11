@@ -3,6 +3,7 @@ package routes
 
 import (
 	controllers "gohub/app/http/controllers/api/v1"
+
 	"gohub/app/http/controllers/api/v1/auth"
 	"gohub/app/http/middlewares"
 
@@ -59,6 +60,11 @@ func RegisterAPIRoutes(r *gin.Engine) {
 			usersGroup := v1.Group("/users")
 			{
 				usersGroup.GET("", uc.Index)
+				usersGroup.PUT("", middlewares.AuthJWT(), uc.UpdateProfile)
+				usersGroup.PUT("/email", middlewares.AuthJWT(), uc.UpdateEmail)
+				usersGroup.PUT("/phone", middlewares.AuthJWT(), uc.UpdatePhone)
+				usersGroup.PUT("/password", middlewares.AuthJWT(), uc.UpdatePassword)
+				usersGroup.PUT("/avatar", middlewares.AuthJWT(), uc.UpdateAvatar)
 			}
 
 			cgc := new(controllers.CategoriesController)
