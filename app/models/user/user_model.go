@@ -3,6 +3,7 @@ package user
 
 import (
 	"gohub/app/models"
+	"gohub/pkg/database"
 )
 
 // User 用户模型
@@ -17,4 +18,9 @@ type User struct {
 	// 所以这里 Email 、Phone 、Password 后面设置了 json:"-" ，这是在指示 JSON 解析器忽略字段 。后面接口返回用户数据时候，这三个字段都会被隐藏。
 
 	models.CommonTimestampsField
+}
+
+// Create 创建用户，通过 User.ID 来判断是否创建成功
+func (userModel *User) Create() {
+	database.DB.Create(&userModel)
 }
