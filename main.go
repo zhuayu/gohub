@@ -42,6 +42,7 @@ func main() {
 			bootstrap.SetupRedis()
 
 			// 初始化缓存
+			bootstrap.SetupCache()
 		},
 	}
 
@@ -52,6 +53,7 @@ func main() {
 		cmd.CmdPlay,
 		cmd.CmdMigrate,
 		cmd.CmdDBSeed,
+		cmd.CmdCache,
 		make.CmdMake,
 	)
 
