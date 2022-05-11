@@ -1,6 +1,7 @@
 package v1
 
 import (
+	"gohub/app/models/user"
 	"gohub/pkg/auth"
 	"gohub/pkg/response"
 
@@ -15,4 +16,12 @@ type UsersController struct {
 func (ctrl *UsersController) CurrentUser(c *gin.Context) {
 	userModel := auth.CurrentUser(c)
 	response.Data(c, userModel)
+}
+
+func (ctrl *UsersController) Index(c *gin.Context) {
+	data, pager := user.Paginate(c, 10)
+	response.JSON(c, gin.H{
+		"data":  data,
+		"pager": pager,
+	})
 }
